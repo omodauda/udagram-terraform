@@ -14,6 +14,17 @@ module "network" {
   az2              = "us-east-1b"
 }
 
+module "server" {
+  source       = "../modules/server_module"
+  vpc_id       = module.network.VPC
+  env_name     = "udapeople-terraform"
+  ami          = "ami-08d4ac5b634553e16"
+  pub_subnet_1 = module.network.PublicSubnet1
+  pub_subnet_2 = module.network.PublicSubnet2
+  prv_subnet_1 = module.network.PrivateSubnet1
+  prv_subnet_2 = module.network.PrivateSubnet2
+}
+
 output "VPC" {
   value = module.network.VPC
 }
@@ -34,20 +45,10 @@ output "Privatesubnet2" {
   value = module.network.PrivateSubnet2
 }
 
-# resource "aws_instance" "webserver" {
-#     ami = "ami-052efd3df9dad4825"
-#     associate_public_ip_address = true
-#     instance_type = "t2.micro"
-#     key_name = "tutorial"
-#     user_data = <<-EOF
-#                 #!/bin/bash
-#                 sudo apt-get update -y
-#                 sudo apt-get install apache2 -y
-#                 sudo systemctl start apache2
-#                 sudo bash -c "echo Hello world > /var/www/html/index.html"
-#                 EOF
+output "LoadBalancerDNSName" {
+  value = module.server.LoadBalancerDNSName
+}
 
-#     tags = {
-#       "Name" = "udapeople-server"
-#     }
-# }
+output "LBPublicURL" {
+  value = module.server.LBPublicURL
+}

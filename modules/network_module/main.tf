@@ -110,12 +110,12 @@ resource "aws_route" "DefaultPublicRoute" {
 
 resource "aws_route_table_association" "PublicSubnet1RouteTableAssociation" {
     route_table_id = aws_route_table.PublicRouteTable.id
-    subnet_id = aws_subnet.PublicSubnet1.id
+    subnet_id      = aws_subnet.PublicSubnet1.id
 }
 
 resource "aws_route_table_association" "PublicSubnet2RouteTableAssociation" {
     route_table_id = aws_route_table.PublicRouteTable.id
-    subnet_id = aws_subnet.PublicSubnet2.id
+    subnet_id      = aws_subnet.PublicSubnet2.id
 }
 
 resource "aws_route_table" "PrivateRouteTable1" {
@@ -129,12 +129,12 @@ resource "aws_route_table" "PrivateRouteTable1" {
 resource "aws_route" "DefaultPrivateRoute1" {
     route_table_id         = aws_route_table.PrivateRouteTable1.id
     destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.NatGateway1.id
+    nat_gateway_id         = aws_nat_gateway.NatGateway1.id
 }
 
 resource "aws_route_table_association" "PrivateSubnet1RouteTableAssociation" {
     route_table_id = aws_route_table.PrivateRouteTable1.id
-    subnet_id = aws_subnet.PrivateSubnet1.id
+    subnet_id      = aws_subnet.PrivateSubnet1.id
 }
 
 resource "aws_route_table" "PrivateRouteTable2" {
@@ -148,10 +148,10 @@ resource "aws_route_table" "PrivateRouteTable2" {
 resource "aws_route" "DefaultPrivateRoute2" {
     route_table_id         = aws_route_table.PrivateRouteTable2.id
     destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.NatGateway2.id
+    nat_gateway_id         = aws_nat_gateway.NatGateway2.id
 }
 
 resource "aws_route_table_association" "PrivateSubnet2RouteTableAssociation" {
     route_table_id = aws_route_table.PrivateRouteTable2.id
-    subnet_id = aws_subnet.PrivateSubnet2.id
+    subnet_id      = aws_subnet.PrivateSubnet2.id
 }
