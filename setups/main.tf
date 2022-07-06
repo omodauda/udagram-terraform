@@ -4,7 +4,7 @@ provider "aws" {
 
 module "network" {
   source           = "../modules/network_module"
-  env_name         = "udapeople-terraform"
+  env_name         = "udagram-terraform"
   vpc_cidr_block   = "10.0.0.0/16"
   pub_subnet1_cidr = "10.0.0.0/24"
   pub_subnet2_cidr = "10.0.1.0/24"
@@ -17,7 +17,7 @@ module "network" {
 module "server" {
   source       = "../modules/server_module"
   vpc_id       = module.network.VPC
-  env_name     = "udapeople-terraform"
+  env_name     = "udagram-terraform"
   ami          = "ami-08d4ac5b634553e16"
   pub_subnet_1 = module.network.PublicSubnet1
   pub_subnet_2 = module.network.PublicSubnet2
